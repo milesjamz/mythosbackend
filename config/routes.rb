@@ -4,12 +4,14 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
-      resources :users, only: [:create, :index, :show]
+      resources :users
       resources :stories
       resources :gods
-      resources :comments
-      resources :likes
+      resources :comments, only: [:create, :destroy, :delete, :index]
+      resources :likes, only: [:create, :destroy, :delete, :index]
       resources :locations
+      resources :journeys
+      resources :journey_locations
     end
   end
 
