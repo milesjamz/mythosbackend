@@ -27,7 +27,9 @@ class Api::V1::UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    user.update(location: params[:location])
+      permitted_columns = params.require(:user).permit(:location, :fav_god, :avatar)
+      user.update_attributes(permitted_columns)
+    # user.update(location: params[:location])
     if user.save
       render json: user
     end
