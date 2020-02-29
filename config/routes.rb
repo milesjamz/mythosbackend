@@ -5,11 +5,11 @@ Rails.application.routes.draw do
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
       resources :users
-      resources :stories
-      resources :gods
+      resources :stories, only: [:create, :destroy, :delete, :index]
+      resources :gods, only: [:create, :index]
       resources :comments, only: [:create, :destroy, :delete, :index]
       resources :likes, only: [:create, :destroy, :delete, :index]
-      resources :locations
+      resources :locations, only: [:create, :destroy, :delete, :index]
       resources :journeys
       resources :journey_locations
     end
